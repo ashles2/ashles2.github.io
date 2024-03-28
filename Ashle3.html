@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+
+<style>
+body {
+  font-family: Poppins ;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #D269;
+}
+div {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family:"Agbalumo", cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #800000;
+  margin: 60px 0 0 0;
+}
+h2 {
+    font-family:"Josefin Sans", cursive;
+  text-align: center;
+  color:#03155e ;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(237, 12, 19);
+  background: pink;
+  background: linear-gradient(bottom, rgba(135, 1, 62,0.1), rgba(135, 1, 62.4));
+  background: -webkit-linear-gradient(bottom, rgba(135, 1, 62,1), rgba(217, 230, 174,.4));
+  background: -moz-linear-gradient(bottom, rgba(217, 230, 174,1), rgba(217, 230, 174,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+ input {
+	font-size: 22px;
+}
+ 
+
+
+.first{
+  background-image: url("https://mexicanappetizersandmore.com/wp-content/uploads/Habichuelas-con-Dulce-2-4.jpg");
+}
+.second{
+  background-image: url("https://www.dominicancooking.com/wp-content/uploads/receta-yaroa-recipe-P1130272.jpg");
+}
+.dessert{
+  background-image: url("https://assets.epicurious.com/photos/6414b1b7d9c84ae389b49fc9/4:3/w_4837,h_3628,c_limit/TresLechesCake_RECIPE_IG_031623_49365.jpg");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Ashle's restaurant</h1>
+<h2>Dominican Good's</h2>
+<div class="first">
+<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Sweet Bean <span class="price">$14</span><br />
+  <small> softened beans then blended with milk and sugar and sweet stuff. They add raisins sometimes added with cookies.</small></p>
+</div>
+<div class="second">
+<input class="quantities"type="number" min="0" style="width: 50px">
+  <p>Yaroa <span class="price">$22</span><br />
+  <small>French fries or a mash of a root vegetable or tuber such as plantain or yuca, then layered with meat and then cheese. Condiments such as mayonnaise, ketchup, and mustard are also often added on top.</small></p>
+</div>
+<div class="dessert">
+<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Tres Leche Cake <span class="price">$8</span><br />
+  <small>a light, airy sponge cake soaked with a mixture of three milks: evaporated milk, sweetened condensed milk, and heavy cream.</small></p>
+</div>
+<br><br>
+<input id="Name" placeholder="Your name">
+<input id="Email" type="email" placeholder="Your email">
+<input id="submit" type="submit">
+<br><br>
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDjzRxSPyvuCWQwj02I7LSR0G3-00fmn4o",
+    authDomain: "ashle3.firebaseapp.com",
+    databaseURL: "https://ashle3-default-rtdb.firebaseio.com",
+    projectId: "ashle3",
+    storageBucket: "ashle3.appspot.com",
+    messagingSenderId: "183022903624",
+    appId: "1:183022903624:web:29dc24ad97bc359be2137d",
+    measurementId: "G-JHVXBE3WR6"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+  
+  const Name = document.querySelector("#Name") 
+  const Email = document.querySelector("#Email")
+  const prices = document.querySelectorAll(".price") 
+  document.querySelector('#submit').addEventListener('click', Submit)
+  const quantities = document.querySelectorAll(".quantities") 
+const itemsList = ["Sweet Bean", "Yaroa", "Tres Leche Cake"]
+  
+  
+  function Submit() {
+  	  const timestamp = buildTimestamp()
+	  let cart = { }
+	  let total = 0 
+	  for  (let i=0; i<quantities.length; i=i+1) {
+	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			  let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price 
+			  cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  	}
+	  	quantities[i].value = ""
+	  }
+
+	  
+  
+  	  set(ref(db, timestamp), {
+  		  Name: Name.value,
+  	      email: Email.value,
+		  cart: cart,
+                  totalPrice: total,
+		  paid: "not yet",
+		  
+  	  });
+
+  	  Name.value = ""
+  	  Email.value = ""
+  	}  
+
+  function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+
+	  return timestamp
+	}
+
+  function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+  
+  
+</script>
+
+
